@@ -14,9 +14,15 @@ namespace Blackjack
     {
         private int handValue { get; set; }
 
-
         /// <summary>
-        /// This is a hellper method which will recur everytime a card is dealt to check for a 
+        /// Default constructor will deal two cards 
+        /// </summary>
+        public Hand()
+        {
+
+        }
+        /// <summary>
+        /// This is a helper method which will recur everytime a card is dealt to check for a 
         /// busted state, then it will trigger an event to signal this event
         /// </summary>
         private void checkBusted()

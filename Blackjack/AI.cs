@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    class AI
+    /// <summary>
+    /// Class to contain the methods for handlling AI opponents, such as the dealer and the AI opponents
+    /// 
+    /// </summary>
+    class AI : Hand
     {
+
     }
 }
