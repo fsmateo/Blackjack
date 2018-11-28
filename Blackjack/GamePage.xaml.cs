@@ -12,7 +12,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MUXC = Microsoft.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,9 +27,5 @@ namespace Blackjack
             this.InitializeComponent();
         }
 
-        private void BackToMain(MUXC.NavigationView sender, MUXC.NavigationViewBackRequestedEventArgs args)
-        {
-            Frame.Navigate(typeof(MainPage));
-        }
     }
 }
