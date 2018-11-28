@@ -10,5 +10,9 @@ namespace Blackjack
     {
         // TODO: Add methods and member variables needed to organize the card game aspect of the program
         // TODO: Integrate Hand, Deck, and AI classes into this class 
+
+
+
+        public void dealHand() { }
     }
 }
