@@ -9,7 +9,8 @@ namespace Blackjack
     {
         private string[] GambleTokens;
 		private const int OneDollarChip = 1;
-        private const int TwentyDollarChip = 20;
+        private const int FiveDollarChip = 5;
+        private const int TwentyFiveDollarChip = 25;
         private const int FiftyDollarChip = 50;
         private const int HundredDollarChip = 100;
 
