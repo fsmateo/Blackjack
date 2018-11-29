@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace Blackjack
 {
-    class BlackJack
+    /// <summary>
+    /// This class will handle setting up the deck and managing the hands as well as the AI players
+    /// </summary>
+    class Blackjack
     {
         // TODO: Add methods and member variables needed to organize the card game aspect of the program
         // TODO: Integrate Hand, Deck, and AI classes into this class 
 
 
+        Blackjack()
+        {
 
-        public void DealHand() { }
+            // create new deck object first
+            Deck newDeck = new Deck(); // TODO: make deck constructor
+        }
+
+
+        public void DealHand()
+        {
+
+        }
     }
 }
