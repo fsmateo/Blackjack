@@ -20,12 +20,8 @@ namespace Blackjack
             numPlayers = 2; // Dealer and human player
             // create new deck object first
             Deck newDeck = new Deck();
-        }
-
-
-        public void DealHand()
-        {
 
         }
+
     }
 }
