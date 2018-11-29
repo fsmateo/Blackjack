@@ -54,6 +54,7 @@ namespace Blackjack
          public void Shuffle_Deck()
          {
              Shuffle(deck_Of_Cards);
+            Stack_Deck();
          }
         /// <summary>
         /// Stacks the deck of cards.

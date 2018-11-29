@@ -26,6 +26,7 @@ namespace Blackjack
         public GamePage()
         {
             this.InitializeComponent();
+            Blackjack newGame = new Blackjack();
         }
 
         private void BackToMain(MUXC.NavigationView sender, MUXC.NavigationViewBackRequestedEventArgs args)
