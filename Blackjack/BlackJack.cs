@@ -13,13 +13,15 @@ namespace Blackjack
     {
         // TODO: Add methods and member variables needed to organize the card game aspect of the program
         // TODO: Integrate Hand, Deck, and AI classes into this class 
-
+        public int numPlayers { get; set; }
 
         Blackjack()
         {
-
+            numPlayers = 2; // Dealer and human player
             // create new deck object first
-            Deck newDeck = new Deck(); // TODO: make deck constructor
+            Deck newDeck = new Deck();
+
+
         }
 
 

@@ -10,7 +10,7 @@ namespace Blackjack
     /// This class will hold cards as they are dealt out in sequence from the Deck.
     /// 
     /// </summary>
-    class Hand : Deck
+    class Hand
     {
         private int HandValue { get; set; }
 
