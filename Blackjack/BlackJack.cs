@@ -13,6 +13,6 @@ namespace Blackjack
 
 
 
-        public void dealHand() { }
+        public void DealHand() { }
     }
 }

@@ -12,7 +12,7 @@ namespace Blackjack
     /// </summary>
     class Hand : Deck
     {
-        private int handValue { get; set; }
+        private int HandValue { get; set; }
 
         /// <summary>
         /// Default constructor will deal two cards 
@@ -25,9 +25,9 @@ namespace Blackjack
         /// This is a helper method which will recur everytime a card is dealt to check for a 
         /// busted state, then it will trigger an event to signal this event
         /// </summary>
-        private void checkBusted()
+        private void CheckBusted()
         {
-            if (handValue > 21) { }
+            if (HandValue > 21) { }
             //TODO: trigger event on GamePage to signify a busted hand
         }
     }
