@@ -68,6 +68,8 @@ namespace Blackjack
 
         public void Hit()
         {
+
+            // TODO: add logic to check for bust
             playerHandValue = 0;
             playerHand.Add(newDeck.Deal_Card());
 

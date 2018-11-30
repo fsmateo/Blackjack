@@ -54,7 +54,7 @@ namespace Blackjack
          public void Shuffle_Deck()
          {
              Shuffle(deck_Of_Cards);
-            Stack_Deck();
+             Stack_Deck();
          }
         /// <summary>
         /// Stacks the deck of cards.
@@ -91,6 +91,8 @@ namespace Blackjack
         /// <returns></returns>
         public int Card_Value(string dealt_Card)
         {
+
+            // TODO: Figure out how to add logic for Ace value
             switch (dealt_Card)
             {
                 case "2_C":
