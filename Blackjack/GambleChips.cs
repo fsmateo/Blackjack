@@ -16,7 +16,7 @@ namespace Blackjack
 
 		 private const int totalChips;
 
-		public TotalChips()
+		public void TotalChips()
 		{
 			// TODO: Algorithm and code to add up total chips used
 			totalChips = OneDollarChip + FiftyDollarChip + TwentyFiveDollarChip + FiftyDollarChip + HundredDollarChip;
