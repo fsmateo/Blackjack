@@ -14,8 +14,8 @@ namespace Blackjack
 		private const int FiftyDollarChip = 50;
 		private const int HundredDollarChip = 100;
 
-		private const int sumOfChips;
-		private const int differenceOfChips;
+		int sumOfChips;
+		int differenceOfChips;
 
 		public void addChips()
 		{
@@ -30,7 +30,15 @@ namespace Blackjack
 			differenceOfChips = HundredDollarChip - FiftyDollarChip - TwentyFiveDollarChip - FiveDollarChip - OneDollarChip;
 		}
 
-	// blah blah
+		public void surrenderChips()
+		{
+
+		}
+	
+		public void doubleChips()
+		{
+
+		}
 
 	}
 }
