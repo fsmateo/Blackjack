@@ -14,9 +14,13 @@ namespace Blackjack
 		private const int FiftyDollarChip = 50;
 		private const int HundredDollarChip = 100;
 
+		 private const int totalChips;
+
 		public TotalChips()
 		{
 			// TODO: Algorithm and code to add up total chips used
+			totalChips = OneDollarChip + FiftyDollarChip + TwentyFiveDollarChip + FiftyDollarChip + HundredDollarChip;
+			
 		}
 
 
