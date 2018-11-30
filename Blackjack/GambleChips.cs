@@ -30,7 +30,7 @@ namespace Blackjack
 			differenceOfChips = HundredDollarChip - FiftyDollarChip - TwentyFiveDollarChip - FiveDollarChip - OneDollarChip;
 		}
 
-		
+	// blah blah
 
 	}
 }
