@@ -35,17 +35,23 @@ namespace Blackjack
             dealerHand.Add(newDeck.Deal_Card());
 
             // Print the Hands out
+
+            System.Diagnostics.Debug.WriteLine("Player Hand: ");
             foreach (string s in playerHand)
             {
                 System.Diagnostics.Debug.WriteLine(s);
                 playerHandValue += newDeck.Card_Value(s);
             }
+            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
+
+            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
             foreach (string s in dealerHand)
             {
                 System.Diagnostics.Debug.WriteLine(s);
                 dealerHandValue += newDeck.Card_Value(s);
-
             }
+            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
+
         }
 
         /// <summary>
@@ -61,16 +67,18 @@ namespace Blackjack
         }
 
         public void Hit()
-        {                       
+        {
+            playerHandValue = 0;
             playerHand.Add(newDeck.Deal_Card());
 
             // Print the Hands out
+            System.Diagnostics.Debug.WriteLine("Player Hand: ");
             foreach (string s in playerHand)
             {
                 System.Diagnostics.Debug.WriteLine(s);
                 playerHandValue += newDeck.Card_Value(s);
             }
-
+            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
         }
 
         public int Stand()
