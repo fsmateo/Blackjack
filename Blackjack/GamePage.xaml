@@ -13,8 +13,8 @@
         <Image x:Name="BlackJackhanddealer" HorizontalAlignment="Center" Height="100" Margin="0,47,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png"/>
         <Image x:Name="BlackJackhandplayer" HorizontalAlignment="Center" Height="134" Margin="0,183,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png" Stretch="UniformToFill" Width="135"/>
         <Image x:Name="BlackJacklogocorner" HorizontalAlignment="Center" Height="125" Margin="493,10,0,0" VerticalAlignment="Top" Width="135" Source="/Assets/blackjack.png" Stretch="UniformToFill"/>
-        <Button Content="Hit" HorizontalAlignment="Left" Margin="493,230,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
-        <Button Content="Stand" HorizontalAlignment="Left" Margin="493,292,0,0" VerticalAlignment="Top" Height="40" Width="80"/>
+        <Button Content="Hit" HorizontalAlignment="Left" Margin="493,230,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Hit"/>
+        <Button Content="Stand" HorizontalAlignment="Left" Margin="493,292,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Stand"/>
         <TextBox HorizontalAlignment="Center" Margin="0,318,0,0" Text="Player 1" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Center" Margin="0,10,0,0" Text="Dealer" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="41,42,0,0" Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>

@@ -23,15 +23,28 @@ namespace Blackjack
     /// </summary>
     public sealed partial class GamePage : Page
     {
+
+        Blackjack newGame = new Blackjack();
         public GamePage()
         {
             this.InitializeComponent();
-            Blackjack newGame = new Blackjack();
+            
         }
 
         private void BackToMain(MUXC.NavigationView sender, MUXC.NavigationViewBackRequestedEventArgs args)
         {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void Hit(object sender, RoutedEventArgs e)
+        {
+            newGame.Hit();
+
+        }
+
+        private void Stand(object sender, RoutedEventArgs e)
+        {
+            newGame.Stand();
         }
     }
 }
