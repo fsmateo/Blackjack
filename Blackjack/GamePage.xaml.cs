@@ -22,10 +22,12 @@ namespace Blackjack
     /// </summary>
     public sealed partial class GamePage : Page
     {
+
+        Blackjack blackjack = new Blackjack();
         public GamePage()
         {
             this.InitializeComponent();
-            Blackjack blackjack = new Blackjack();
+            
         }
 
         /// <summary>
@@ -80,6 +82,14 @@ namespace Blackjack
             // TODO: FIGURE OUT OPTION 2 AND CHANGE NAME IN XAML
         }
 
+        private void Hit(object sender, RoutedEventArgs e)
+        {
+            blackjack.Hit();
+        }
 
+        private void Stand(object sender, RoutedEventArgs e)
+        {
+            blackjack.Stand();
+        }
     }
 }
