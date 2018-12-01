@@ -7,7 +7,6 @@ namespace Blackjack
 {
 	class GambleChips
 	{
-		private string GambleTokens;
 		private const int OneDollarChip = 1;
 		private const int FiveDollarChip = 5;
 		private const int TwentyFiveDollarChip = 25;
