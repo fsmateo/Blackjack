@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
     <ScrollViewer VerticalScrollBarVisibility="Visible">
         <Grid Background="DarkGreen">
             <Grid.RowDefinitions>
@@ -23,8 +23,9 @@
                 <ColumnDefinition Width= "*" />
             </Grid.ColumnDefinitions>
 
-            <RelativePanel  Grid.ColumnSpan="2"> 
-                <!--Settings Menu Button--> 
+            <!--Settings Bar-->
+            <RelativePanel  Grid.ColumnSpan="2">
+                <!--Settings Menu Button-->
                 <Button
                 Name="Menu" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="25"  
                 Click="Settings_Click" VerticalAlignment="Top" RequestedTheme="Default" FontWeight="Bold"
