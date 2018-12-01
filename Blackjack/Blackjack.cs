@@ -31,7 +31,7 @@ namespace Blackjack
             // create new deck object first            
             // Shuffle the deck and generate the stack
             newDeck.Shuffle_Deck();
-
+            
             // Deal the cards to the player and the dealer
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
