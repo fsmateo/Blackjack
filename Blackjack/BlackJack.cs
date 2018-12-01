@@ -91,10 +91,6 @@ namespace Blackjack
             }
             System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
 
-
-
-            if playerhand > 21
-                { chip }
         }
 
         public int Stand()
