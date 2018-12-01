@@ -19,7 +19,11 @@ namespace Blackjack
         List<string> playerHand = new List<string>();
         List<string> dealerHand = new List<string>();
         Deck newDeck = new Deck();
-        
+        bool hit;
+        bool stand;
+        bool doubleDown;
+
+
 
         public Blackjack()
         {
@@ -51,10 +55,23 @@ namespace Blackjack
                 dealerHandValue += newDeck.Card_Value(s);
             }
             System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
-            //if(Hit = 1)
-            //{
-            //    Hit();
-            //}
+
+
+            // ToDO: need to program buttons for the UI team to send a true when the user hits the button
+            if (hit == true)
+            {
+                Hit();
+            }
+
+            if (stand == true)
+            {
+                Stand();
+            }
+
+            if (doubleDown == true)
+            {
+                DoubleDown();
+            }
 
         }
 
@@ -94,6 +111,13 @@ namespace Blackjack
         }
 
         public int Stand()
+        {
+
+            throw new NotImplementedException();
+
+        }
+
+        public int DoubleDown()
         {
 
             throw new NotImplementedException();

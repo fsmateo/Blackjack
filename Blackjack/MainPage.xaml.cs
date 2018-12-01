@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using MUXC = Microsoft.UI.Xaml.Controls;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Blackjack
@@ -28,7 +28,8 @@ namespace Blackjack
         }
 
         /// <summary>
-        /// This method will exit the game when the user clicks it from the main menu.
+        /// This method will exit the game when the user clicks exit game button
+        /// on the main menu.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -84,6 +85,11 @@ namespace Blackjack
             // TODO: MODE 2
         }
 
+        /// <summary>
+        /// Closes flyout from Quit Game button if user cancels.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Close_Flyout(object sender, RoutedEventArgs e)
         {
             QuitFlyout.Hide();

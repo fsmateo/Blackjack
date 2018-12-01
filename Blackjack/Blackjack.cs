@@ -22,8 +22,8 @@ namespace Blackjack
         bool hit;
         bool stand;
         bool doubleDown;
-       
-        
+
+
 
         public Blackjack()
         {
