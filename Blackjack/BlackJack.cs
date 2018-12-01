@@ -51,6 +51,10 @@ namespace Blackjack
                 dealerHandValue += newDeck.Card_Value(s);
             }
             System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
+            //if(Hit = 1)
+            //{
+            //    Hit();
+            //}
 
         }
 
@@ -73,6 +77,11 @@ namespace Blackjack
             playerHandValue = 0;
             playerHand.Add(newDeck.Deal_Card());
 
+            //if playerhand > 21
+            //    { chip  }
+            //else if( playerHand <= 21)
+
+
             // Print the Hands out
             System.Diagnostics.Debug.WriteLine("Player Hand: ");
             foreach (string s in playerHand)
@@ -81,6 +90,11 @@ namespace Blackjack
                 playerHandValue += newDeck.Card_Value(s);
             }
             System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
+
+
+
+            if playerhand > 21
+                { chip }
         }
 
         public int Stand()
