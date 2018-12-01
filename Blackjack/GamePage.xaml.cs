@@ -25,6 +25,7 @@ namespace Blackjack
         public GamePage()
         {
             this.InitializeComponent();
+            Blackjack blackjack = new Blackjack();
         }
 
         /// <summary>
