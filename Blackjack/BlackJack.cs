@@ -16,8 +16,8 @@ namespace Blackjack
         public int NumPlayers { get; set; }
         public int playerHandValue { get; set; }
         private int dealerHandValue { get; set; }
-        public List<string> playerHand = new List<string>();
-        public List<string> dealerHand = new List<string>();
+        List<string> playerHand = new List<string>();
+        List<string> dealerHand = new List<string>();
         Deck newDeck = new Deck();
         bool hit;
         bool stand;
