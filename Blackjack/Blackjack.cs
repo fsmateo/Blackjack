@@ -129,7 +129,7 @@ namespace Blackjack
         /// Copy of the contructor for creating a new game, although this method will not shuffle the deck
         /// until there no cards remaining
         /// </summary>
-        public void restartGame()
+        public void nextRound()
         {
             if (newDeck.CardsInStack() < 10)
                 newDeck.Shuffle_Deck();

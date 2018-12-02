@@ -89,7 +89,7 @@ namespace Blackjack
             if (blackjack.playerHandValue > 21)
             {
                 // Display a message to indicate the player busted, subtract the bet, deal new hands
-                
+                blackjack.nextRound();
             }
         }
 
