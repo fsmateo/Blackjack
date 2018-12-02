@@ -25,6 +25,9 @@ namespace Blackjack
 
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Blackjack()
         {
             NumPlayers = 2; // Dealer and human player
@@ -57,21 +60,23 @@ namespace Blackjack
             System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
 
 
-            // ToDO: need to program buttons for the UI team to send a true when the user hits the button
-            if (hit == true)
-            {
-                Hit();
-            }
+            // This logic is unnecessary as the Hit and Stand methods will be called from GamePage.xaml.cs
+            // and do not need to be called in the constructor for this class (Brandon)
+            //// ToDO: need to program buttons for the UI team to send a true when the user hits the button
+            //if (hit == true)
+            //{
+            //    Hit();
+            //}
 
-            if (stand == true)
-            {
-                Stand();
-            }
+            //if (stand == true)
+            //{
+            //    Stand();
+            //}
 
-            if (doubleDown == true)
-            {
-                DoubleDown();
-            }
+            //if (doubleDown == true)
+            //{
+            //    DoubleDown();
+            //}
 
         }
 
@@ -92,11 +97,7 @@ namespace Blackjack
 
             // TODO: add logic to check for bust
             playerHandValue = 0;
-            playerHand.Add(newDeck.Deal_Card());
-
-            //if playerhand > 21
-            //    { chip  }
-            //else if( playerHand <= 21)
+            playerHand.Add(newDeck.Deal_Card());          
 
 
             // Print the Hands out
@@ -122,6 +123,40 @@ namespace Blackjack
 
             throw new NotImplementedException();
 
+        }
+
+        /// <summary>
+        /// Copy of the contructor for creating a new game, although this method will not shuffle the deck
+        /// until there no cards remaining
+        /// </summary>
+        public void restartGame()
+        {
+            if (newDeck.CardsInStack() < 10)
+                newDeck.Shuffle_Deck();
+
+            // Deal the cards to the player and the dealer
+            playerHand.Add(newDeck.Deal_Card());
+            dealerHand.Add(newDeck.Deal_Card());
+            playerHand.Add(newDeck.Deal_Card());
+            dealerHand.Add(newDeck.Deal_Card());
+
+            // Print the Hands out
+
+            System.Diagnostics.Debug.WriteLine("Player Hand: ");
+            foreach (string s in playerHand)
+            {
+                System.Diagnostics.Debug.WriteLine(s);
+                playerHandValue += newDeck.Card_Value(s);
+            }
+            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
+
+            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
+            foreach (string s in dealerHand)
+            {
+                System.Diagnostics.Debug.WriteLine(s);
+                dealerHandValue += newDeck.Card_Value(s);
+            }
+            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
         }
 
     }

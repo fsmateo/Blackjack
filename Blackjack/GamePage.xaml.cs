@@ -84,7 +84,13 @@ namespace Blackjack
 
         private void Hit(object sender, RoutedEventArgs e)
         {
+            // Invoke the hit method from the Blackjack class and check for bust
             blackjack.Hit();
+            if (blackjack.playerHandValue > 21)
+            {
+                // Display a message to indicate the player busted, subtract the bet, deal new hands
+                
+            }
         }
 
         private void Stand(object sender, RoutedEventArgs e)
