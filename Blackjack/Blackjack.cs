@@ -16,7 +16,7 @@ namespace Blackjack
         public int NumPlayers { get; set; }
         public int playerHandValue { get; set; }
         private int dealerHandValue { get; set; }
-        List<string> playerHand = new List<string>();
+        public List<string> playerHand = new List<string>();
         List<string> dealerHand = new List<string>();
         Deck newDeck = new Deck();
         bool hit;
@@ -34,9 +34,6 @@ namespace Blackjack
             
             // Deal the cards to the player and the dealer
             playerHand.Add(newDeck.Deal_Card());
-            dealerHand.Add(newDeck.Deal_Card());
-            playerHand.Add(newDeck.Deal_Card());
-            dealerHand.Add(newDeck.Deal_Card());
 
             // Print the Hands out
 

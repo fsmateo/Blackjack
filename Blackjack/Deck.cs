@@ -29,7 +29,7 @@ namespace Blackjack
              {
                  for (int suit = 0; suit < num_Suits; suit++, count++)
                  {
-                    char[] temp = { faces[face], '_', suits[suit] };
+                    char[] temp = {'A', 's', 's', 'e', 't', 's', '/', faces[face], '_', suits[suit], '.', 'p', 'n', 'g' };
                     string card = new string(temp);
                     deck.Push(card);
                  }

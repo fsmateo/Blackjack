@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using System.Collections.ObjectModel;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Blackjack
@@ -24,10 +24,11 @@ namespace Blackjack
     {
 
         Blackjack blackjack = new Blackjack();
+        ObservableCollection<String> myHand = new ObservableCollection<string>();
         public GamePage()
         {
             this.InitializeComponent();
-            
+            myHand = blackjack.playerHand;
         }
 
         /// <summary>

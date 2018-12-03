@@ -5,6 +5,7 @@
     xmlns:local="using:Blackjack"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Blackjack"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -75,6 +76,15 @@
                 </SplitView.Pane>
             </SplitView>
         </RelativePanel>
+
+        <GridView HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="PlayerHand" ItemsSource="{x:Bind myHand}">
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="x:Bind">
+                    <Image Width="150" Source="{x:Bind}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <!--
         <Image x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Top" Width="253" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
         <Image x:Name="BlackJackhanddealer" HorizontalAlignment="Center" Height="100" Margin="0,47,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png"/>
         <Image x:Name="BlackJackhandplayer" HorizontalAlignment="Center" Height="134" Margin="0,183,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png" Stretch="UniformToFill" Width="135"/>
@@ -85,5 +95,6 @@
         <TextBox HorizontalAlignment="Center" Margin="0,10,0,0" Text="Dealer" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="41,42,0,0" Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>
         <TextBox HorizontalAlignment="Left" Margin="41,213,0,0" Text="Bet Amount" VerticalAlignment="Top" Height="105" Width="120" CompositeMode="Inherit"/>
+        -->
     </Grid>
 </Page>
