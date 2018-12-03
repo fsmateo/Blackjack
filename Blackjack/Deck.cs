@@ -8,7 +8,7 @@ namespace Blackjack
 {
     class Deck
     {
-         private const int num_Faces = 13;
+         private const int num_Faces = 13; 
          private const int num_Suits = 4;
          private const int num_Cards = 52;
          private int cardVal = 0;

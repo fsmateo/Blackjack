@@ -37,7 +37,9 @@ namespace Blackjack
             
             // Deal the cards to the player and the dealer
             playerHand.Add(newDeck.Deal_Card());
-
+            dealerHand.Add(newDeck.Deal_Card());
+            playerHand.Add(newDeck.Deal_Card());
+            dealerHand.Add(newDeck.Deal_Card());
             // Print the Hands out
 
             System.Diagnostics.Debug.WriteLine("Player Hand: ");
