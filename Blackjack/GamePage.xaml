@@ -10,42 +10,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="GridBackground" Background="DarkGreen">
-         <!--Side Menu Bar-->
-        <SplitView x:Name="CoolMenu" IsPaneOpen="False" DisplayMode="CompactOverlay" CompactPaneLength="50" 
-                   OpenPaneLength="250">
-            <SplitView.Pane>
-                <StackPanel Background="DarkRed">
-                    <!--https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font-->
-                    <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Background="{x:Null}"
-                            Click="MenuButton_Click" FontSize="30"/>
-                    <StackPanel Orientation="Horizontal">
-                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button1" 
-                                FontFamily="Segoe MDL2 Assets" Content="&#xE7fc;"/>
-                        <TextBlock Text="Game Rules" FontSize="18" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button2" 
-                                FontFamily="Segoe MDL2 Assets" Content="&#xE76e;"/>
-                        <TextBlock Text="Player Stats" FontSize="18" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button3" 
-                                FontFamily="Segoe MDL2 Assets" Content="&#xE7bf;"/>
-                        <TextBlock Text="Get More Chips" FontSize="18" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button4" 
-                                FontFamily="Segoe MDL2 Assets" Content="&#xE70f;"/>
-                        <TextBlock Text="Creators" FontSize="18" VerticalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button5" 
-                                FontFamily="Segoe MDL2 Assets" Content="&#xE72d;"/>
-                        <TextBlock Text="GitHub Link" FontSize="18" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </StackPanel>
-            </SplitView.Pane>
-        </SplitView>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
