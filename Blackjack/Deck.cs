@@ -76,9 +76,9 @@ namespace Blackjack
         /// <summary>
         /// Checks the remaining number of cards in the deck.
         /// </summary>
-        public void CardsInStack()
+        public int CardsInStack()
         {
-            Console.WriteLine(deck.Count());
+            return deck.Count();
         }
         /// <summary>
         /// dealt_Card value is determined via case statements
