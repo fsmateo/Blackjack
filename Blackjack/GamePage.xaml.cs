@@ -22,16 +22,19 @@ namespace Blackjack
     /// </summary>
     public sealed partial class GamePage : Page
     {
+        // These need to be outside of the constructor so they can be acessed be the other methods!!!!!
+        Blackjack blackjack = new Blackjack();
+        ObservableCollection<String> myHand = new ObservableCollection<string>();
+        
 
         public GamePage()
         {
             this.InitializeComponent();
-            Blackjack blackjack = new Blackjack();
-            ObservableCollection<String> myHand = new ObservableCollection<string>();
             myHand.Add(blackjack.playerHand[0]);
             myHand.Add(blackjack.playerHand[1]);
             System.Diagnostics.Debug.WriteLine(myHand[0]);
             PlayerHand.ItemsSource = myHand;
+
 
         }
 
@@ -90,7 +93,20 @@ namespace Blackjack
         
         private void Hit(object sender, RoutedEventArgs e)
         {
+            blackjack.Hit();
+
             // TODO: Implement and check for bust.
+            if (blackjack.playerHandValue > 21)
+            {
+                // You busted!!! display a message and restart the game
+                blackjack.nextRound();
+
+                myHand.Clear();
+                myHand.Add(blackjack.playerHand[0]);
+                myHand.Add(blackjack.playerHand[1]);
+                System.Diagnostics.Debug.WriteLine(myHand[0]);
+                PlayerHand.ItemsSource = myHand;
+            }
         }
 
         private void Stand(object sender, RoutedEventArgs e)
