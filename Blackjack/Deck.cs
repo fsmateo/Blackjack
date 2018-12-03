@@ -158,6 +158,12 @@ namespace Blackjack
                 case "Assets/K_S.png":
                     cardVal = 10;
                     break;
+                case "Assets/A_C.png":
+                case "Assets/A_D.png":
+                case "Assets/A_H.png":
+                case "Assets/A_S.png":
+                    cardVal = 11;
+                    break;
             }
             return cardVal;
         }

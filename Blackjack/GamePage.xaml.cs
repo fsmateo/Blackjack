@@ -32,7 +32,7 @@ namespace Blackjack
             this.InitializeComponent();
             myHand.Add(blackjack.playerHand[0]);
             myHand.Add(blackjack.playerHand[1]);
-            System.Diagnostics.Debug.WriteLine(myHand[0]);
+           // System.Diagnostics.Debug.WriteLine(myHand[0]);
             PlayerHand.ItemsSource = myHand;
 
 
@@ -95,6 +95,8 @@ namespace Blackjack
         {
             blackjack.Hit();
 
+            // Need to figure out to check for aces to minus 10 from the playerHandValue
+            // make sure all fringe cases are handled as well
             // TODO: Implement and check for bust.
             if (blackjack.playerHandValue > 21)
             {
@@ -104,7 +106,7 @@ namespace Blackjack
                 myHand.Clear();
                 myHand.Add(blackjack.playerHand[0]);
                 myHand.Add(blackjack.playerHand[1]);
-                System.Diagnostics.Debug.WriteLine(myHand[0]);
+               // System.Diagnostics.Debug.WriteLine(myHand[0]);
                 PlayerHand.ItemsSource = myHand;
             }
         }
