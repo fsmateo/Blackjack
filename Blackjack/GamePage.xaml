@@ -1,89 +1,78 @@
 ﻿<Page
-    x:Class="Blackjack.GamePage"
+    x:Class="BlackJackUI.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Blackjack"
+    xmlns:local="using:BlackJackUI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="GridBackground" Background="DarkGreen">
-
-        <!--Settings Bar-->
-        <RelativePanel  Grid.ColumnSpan="2">
-            <!--Settings Menu Button-->
-            <Button
-                Name="Menu" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="25"  
-                Click="Settings_Click" VerticalAlignment="Top" RequestedTheme="Default" FontWeight="Bold"
-                Foreground="White" Background="Black" IsDoubleTapEnabled="False" />
-
-
-            <!--Settings Menu-->
-            <SplitView OpenPaneLength="100" RelativePanel.Below="Menu" Name="Settings"
-                           DisplayMode="Inline" RequestedTheme="Dark" >
-                <SplitView.Pane>
-                    <!--Option 1 Stack-->
-                    <StackPanel Orientation="Vertical">
-                        <!--Outer stack to stack different options vertically-->
-                        <StackPanel Orientation="Vertical">
-                            <!--Inner stacks orientate each separate option horizontally-->
-                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 1" />
-                            <RadioButton
-                                    Name ="Option1a" Content="Yes" GroupName="Group1"  Checked="Toggle_Option_1" IsChecked="True"/>
-                            <RadioButton
-                                     Name="Option1b" Content="No" Margin="0,0,0,10" GroupName="Group1" Checked="Toggle_Option_1"/>
-                        </StackPanel>
-                        <!--Option 2 Stack-->
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 2"/>
-                            <RadioButton
-                                    Name="Option2a" Content="Yes" GroupName="Group2" Checked="Toggle_Option_2" IsChecked="True"/>
-                            <RadioButton
-                                    Name="Option2b" Content="No" GroupName="Group2" Checked="Toggle_Option_2" IsChecked="False"/>
-                        </StackPanel>
-                        <!--Button to return to title screen-->
-                        <Button x:Name ="TitleReturn" 
-                                Background="Blue"
-                                Content="Title"
-                                FontWeight="ExtraBlack"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
-                            <!--Flyout to confirm return to title-->
-                            <Button.Flyout>
-                                <Flyout x:Name ="ReturnToTitleFlyout">
-                                    <RelativePanel>
-                                        <TextBlock Name="Title"
-                                                   Text="Return to Title?"
-                                                   HorizontalAlignment="Center"
-                                                   Margin="8,0,0,8"/>
-                                        <Button Name="TitleConfirm"
-                                                RelativePanel.Below="Title"
-                                                Content="Yes"
-                                                Click="Return_Title"
-                                                Margin="0,0,10,0"/>
-                                        <Button Name="QuitCancel"
-                                                RelativePanel.RightOf="TitleConfirm"
-                                                RelativePanel.Below="Title"
-                                                Content="No"
-                                                Click="Close_Flyout"/>
-                                    </RelativePanel>
-                                </Flyout>
-                            </Button.Flyout>
-                        </Button>
+    <Grid Background="DarkGreen">
+        <!--Side Menu Bar-->
+        <SplitView x:Name="CoolMenu" IsPaneOpen="False" DisplayMode="CompactOverlay" CompactPaneLength="50" 
+                   OpenPaneLength="250">
+            <SplitView.Pane>
+                <StackPanel Background="DarkRed">
+                    <!--https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font-->
+                    <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Background="{x:Null}"
+                            Click="MenuButton_Click" FontSize="30"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button1" 
+                                FontFamily="Segoe MDL2 Assets" Content="&#xE7fc;"/>
+                        <TextBlock Text="Game Rules" FontSize="18" VerticalAlignment="Center"/>
                     </StackPanel>
-                </SplitView.Pane>
-            </SplitView>
-        </RelativePanel>
-        <Image x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Top" Width="253" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
-        <Image x:Name="BlackJackhanddealer" HorizontalAlignment="Center" Height="100" Margin="0,47,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png"/>
-        <Image x:Name="BlackJackhandplayer" HorizontalAlignment="Center" Height="134" Margin="0,183,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png" Stretch="UniformToFill" Width="135"/>
-        <Image x:Name="BlackJacklogocorner" HorizontalAlignment="Center" Height="125" Margin="493,10,0,0" VerticalAlignment="Top" Width="135" Source="/Assets/blackjack.png" Stretch="UniformToFill"/>
-        <Button Content="Hit" HorizontalAlignment="Left" Margin="493,230,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Hit"/>
-        <Button Content="Stand" HorizontalAlignment="Left" Margin="493,292,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Stand"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,318,0,0" Text="Player 1" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,10,0,0" Text="Dealer" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="41,42,0,0" Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="41,213,0,0" Text="Bet Amount" VerticalAlignment="Top" Height="105" Width="120" CompositeMode="Inherit"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button2" 
+                                FontFamily="Segoe MDL2 Assets" Content="&#xE76e;"/>
+                        <TextBlock Text="Player Stats" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button3" 
+                                FontFamily="Segoe MDL2 Assets" Content="&#xE7bf;"/>
+                        <TextBlock Text="Get More Chips" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button4" 
+                                FontFamily="Segoe MDL2 Assets" Content="&#xE70f;"/>
+                        <TextBlock Text="Creators" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button5" 
+                                FontFamily="Segoe MDL2 Assets" Content="&#xE72d;"/>
+                        <TextBlock Text="GitHub Link" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+        <Grid Margin="50,0,0,0">
+            <Grid x:Name="GameSide">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="0"/>
+                    <RowDefinition Height="Auto" MinHeight="0"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <!--Bottom Player Button Layout-->
+            </Grid>
+        </Grid>
+        <StackPanel Height="150" Margin="0,550,0,20">
+            <Button x:Name="Hit" Margin="0,0,0,20" Content="Hit"
+                        Background="#66FFFFFF"  BorderThickness="6" BorderBrush="Black" Foreground="Black" 
+                        FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                        Width="200"/>
+            <Button x:Name="Stand" Margin="00,0,0,20" Content="Stand"
+                        Background="#66FFFFFF"  BorderThickness="6" BorderBrush="Black" Foreground="Black" 
+                        FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                        Width="200"/>
+        </StackPanel>
+        <StackPanel Height="110" Margin="0,0,0,600">
+
+            <TextBlock Text="BlackJack Big Group" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        </StackPanel>
     </Grid>
 </Page>
