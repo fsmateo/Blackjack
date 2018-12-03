@@ -8,7 +8,7 @@ namespace Blackjack
 {
     class Deck
     {
-         private const int num_Faces = 13;
+         private const int num_Faces = 13; 
          private const int num_Suits = 4;
          private const int num_Cards = 52;
          private int cardVal = 0;
@@ -29,7 +29,7 @@ namespace Blackjack
              {
                  for (int suit = 0; suit < num_Suits; suit++, count++)
                  {
-                    char[] temp = { faces[face], '_', suits[suit] };
+                    char[] temp = {'A', 's', 's', 'e', 't', 's', '/', faces[face], '_', suits[suit], '.', 'p', 'n', 'g' };
                     string card = new string(temp);
                     deck.Push(card);
                  }

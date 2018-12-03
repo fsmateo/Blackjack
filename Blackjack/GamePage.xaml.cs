@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using System.Collections.ObjectModel;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Blackjack
@@ -23,11 +23,16 @@ namespace Blackjack
     public sealed partial class GamePage : Page
     {
 
-        Blackjack blackjack = new Blackjack();
         public GamePage()
         {
             this.InitializeComponent();
-            
+            Blackjack blackjack = new Blackjack();
+            ObservableCollection<String> myHand = new ObservableCollection<string>();
+            myHand.Add(blackjack.playerHand[0]);
+            myHand.Add(blackjack.playerHand[1]);
+            System.Diagnostics.Debug.WriteLine(myHand[0]);
+            PlayerHand.ItemsSource = myHand;
+
         }
 
         /// <summary>
@@ -82,20 +87,16 @@ namespace Blackjack
             // TODO: FIGURE OUT OPTION 2 AND CHANGE NAME IN XAML
         }
 
+        
         private void Hit(object sender, RoutedEventArgs e)
         {
-            // Invoke the hit method from the Blackjack class and check for bust
-            blackjack.Hit();
-            if (blackjack.playerHandValue > 21)
-            {
-                // Display a message to indicate the player busted, subtract the bet, deal new hands
-                blackjack.nextRound();
-            }
+            // TODO: Implement and check for bust.
         }
 
         private void Stand(object sender, RoutedEventArgs e)
         {
-            blackjack.Stand();
+            //TODO: Implement
         }
+        
     }
 }

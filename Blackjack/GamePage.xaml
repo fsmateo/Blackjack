@@ -5,11 +5,24 @@
     xmlns:local="using:Blackjack"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:Blackjack"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid x:Name="GridBackground" Background="DarkGreen">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <!--Middle column takes 3/5 of total width-->
+            <ColumnDefinition Width= "*" />
+        </Grid.ColumnDefinitions>
+        
         <!--Settings Bar-->
         <RelativePanel  Grid.ColumnSpan="2">
             <!--Settings Menu Button-->
@@ -75,15 +88,31 @@
                 </SplitView.Pane>
             </SplitView>
         </RelativePanel>
-        <Image x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Top" Width="253" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
-        <Image x:Name="BlackJackhanddealer" HorizontalAlignment="Center" Height="100" Margin="0,47,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png"/>
-        <Image x:Name="BlackJackhandplayer" HorizontalAlignment="Center" Height="134" Margin="0,183,0,0" VerticalAlignment="Top" Source="/Assets/BlackJackhand.png" Stretch="UniformToFill" Width="135"/>
-        <Image x:Name="BlackJacklogocorner" HorizontalAlignment="Center" Height="125" Margin="493,10,0,0" VerticalAlignment="Top" Width="135" Source="/Assets/blackjack.png" Stretch="UniformToFill"/>
-        <Button Content="Hit" HorizontalAlignment="Left" Margin="493,230,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Hit"/>
-        <Button Content="Stand" HorizontalAlignment="Left" Margin="493,292,0,0" VerticalAlignment="Top" Height="40" Width="80" Click="Stand"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,318,0,0" Text="Player 1" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,10,0,0" Text="Dealer" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="41,42,0,0" Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="41,213,0,0" Text="Bet Amount" VerticalAlignment="Top" Height="105" Width="120" CompositeMode="Inherit"/>
+
+        <!--This block generates the player hand-->
+        <GridView Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" x:Name="PlayerHand">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding}" Stretch="Fill" Width="100" />
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <Image Grid.Column="1"  x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Center" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
+        <Image Grid.Column="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="/Assets/blackjack.png" Stretch="None"/>
+       
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+            <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
+                    FontSize="30" HorizontalAlignment="Stretch" 
+                    Background="#66FFFFFF" Width="100"/>
+            <Button Content="Stand" Click="Stand" FontSize="30" Background="#66FFFFFF"/>
+        </StackPanel>
+
+        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Text="Player 1" VerticalAlignment="Center"/>
+        <TextBox HorizontalAlignment="Center" Text="Dealer" VerticalAlignment="Top"/>
+        
+        <TextBox Grid.Row="1" HorizontalAlignment="Left"  Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>
+        <TextBox Grid.Row="2" HorizontalAlignment="Left" Text="Bet Amount" VerticalAlignment="Top" Height="105" Width="120" CompositeMode="Inherit"/>
+
     </Grid>
 </Page>
