@@ -26,5 +26,10 @@ namespace BlackJackUI
         {
             this.InitializeComponent();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.IsPaneOpen = true;
+        }
     }
 }
