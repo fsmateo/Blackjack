@@ -23,7 +23,8 @@ namespace Blackjack
         bool stand;
         bool doubleDown;
 
-
+        //TODO: Initialize an array of objects for the players
+        //Player[] player = new Player[];
 
         /// <summary>
         /// 
@@ -89,6 +90,7 @@ namespace Blackjack
             newDeck.Shuffle_Deck();
 
             // TODO create a loop which will deal hands to multiple players
+
         }
 
         public void Hit()
