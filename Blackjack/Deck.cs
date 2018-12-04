@@ -73,6 +73,12 @@ namespace Blackjack
             top_Card = deck.Pop();
             return top_Card;
         }
+
+        public string Skip_Card()
+        {
+            return "0";
+        }
+
         /// <summary>
         /// Checks the remaining number of cards in the deck.
         /// </summary>
