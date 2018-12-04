@@ -126,6 +126,16 @@ namespace Blackjack
 
         }
 
+        public int Split()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Surrender()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Copy of the contructor for creating a new game, although this method will not shuffle the deck
         /// until there no cards remaining
