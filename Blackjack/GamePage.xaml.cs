@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Blackjack
@@ -92,7 +93,7 @@ namespace Blackjack
         }
 
         
-        private void Hit(object sender, RoutedEventArgs e)
+        private async void Hit(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -109,6 +110,13 @@ namespace Blackjack
             // If bust, reinitialize UI hand to the now-reset Blackjack.cs hand.
             if (blackjack.busted)
             {
+                HitButton.IsEnabled = false;
+                Logo.Visibility = Visibility.Collapsed;
+                BustMessage.Visibility = Visibility;
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                BustMessage.Visibility = Visibility.Collapsed;
+                Logo.Visibility = Visibility;
+                HitButton.IsEnabled = true;
                 // TODO: DISPLAY BUSTED MESSAGE BEFORE RESETTING HAND.
                 blackjack.NextRound();
                 myHand.Clear();

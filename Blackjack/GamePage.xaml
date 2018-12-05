@@ -122,12 +122,23 @@
                 <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="Player" TextAlignment="Center"/>
             </StackPanel>
 
-            <Image Grid.Column="1" Grid.Row="0" MaxHeight="100"  x:Name="backgroundlogo" HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="Assets/Blackjacklogo.jpg"/>
-            <Image Grid.Column="2" Grid.ColumnSpan="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="Assets/blackjack.png"/>
+            <!-- Busted Messsage, Initially not visible-->
+            <TextBlock Name="BustMessage" Text="YOU BUSTED!" 
+                       FontSize="100" Foreground="WhiteSmoke" FontWeight="ExtraBlack"
+                       Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" 
+                       VerticalAlignment="Bottom" Visibility="Collapsed" />
+            
+            <!-- Logos -->
+            <Image x:Name="Logo" Grid.Column="1" Grid.Row="0" 
+                   MaxHeight="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                   Source="Assets/Blackjacklogo.jpg"/>
+            <Image Grid.Column="2" Grid.ColumnSpan="1" 
+                   HorizontalAlignment="Center" VerticalAlignment="Top"  
+                   Source="Assets/blackjack.png"/>
 
             <!--Player Control Stackpanel (Hit/Stand)-->
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
-                <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
+                <Button Name="HitButton" Content="Hit" Click="Hit" Margin="0,0,0,20"
                         FontSize="30" HorizontalAlignment="Stretch" 
                         Background="#66FFFFFF" Width="150"
                         BorderThickness="6" BorderBrush="Black"/>
