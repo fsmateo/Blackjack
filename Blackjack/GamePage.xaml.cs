@@ -113,7 +113,7 @@ namespace Blackjack
 
         private void Stand(object sender, RoutedEventArgs e)
         {
-            //TODO: Implement
+            blackjack.Stand();
         }
         
     }
