@@ -11,6 +11,12 @@ namespace Blackjack
         private int playerHandValue = 0;
         private List<string> playerHand = new List<string>();
 
+        //Explicit public constructor
+        public Player()
+        {
+
+        }
+
         public void PlayerHandValue(int value)
         {
             playerHandValue += value;

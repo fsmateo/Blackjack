@@ -24,7 +24,7 @@ namespace Blackjack
         bool doubleDown;
 
         //TODO: Initialize an array of objects to represent the player's hand (including the dealer)
-        //Player[] player = new Player[];
+        Player player = new Player();
 
         /// <summary>
         /// 
