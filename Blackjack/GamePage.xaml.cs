@@ -22,19 +22,16 @@ namespace Blackjack
     /// </summary>
     public sealed partial class GamePage : Page
     {
-        // These need to be outside of the constructor so they can be acessed be the other methods!!!!!
-        Blackjack blackjack = new Blackjack();
-        ObservableCollection<String> myHand = new ObservableCollection<string>();
-        
 
         public GamePage()
         {
             this.InitializeComponent();
+            Blackjack blackjack = new Blackjack();
+            ObservableCollection<String> myHand = new ObservableCollection<string>();
             myHand.Add(blackjack.playerHand[0]);
             myHand.Add(blackjack.playerHand[1]);
-           // System.Diagnostics.Debug.WriteLine(myHand[0]);
+            System.Diagnostics.Debug.WriteLine(myHand[0]);
             PlayerHand.ItemsSource = myHand;
-
 
         }
 
@@ -63,9 +60,9 @@ namespace Blackjack
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.IsPaneOpen = !Settings.IsPaneOpen;
+            CoolMenu.IsPaneOpen = !CoolMenu.IsPaneOpen;
         }
 
         /// <summary>
@@ -90,31 +87,16 @@ namespace Blackjack
             // TODO: FIGURE OUT OPTION 2 AND CHANGE NAME IN XAML
         }
 
-        
+
         private void Hit(object sender, RoutedEventArgs e)
         {
-            blackjack.Hit();
-
-            // Need to figure out to check for aces to minus 10 from the playerHandValue
-            // make sure all fringe cases are handled as well
             // TODO: Implement and check for bust.
-            if (blackjack.playerHandValue > 21)
-            {
-                // You busted!!! display a message and restart the game
-                blackjack.nextRound();
-
-                myHand.Clear();
-                myHand.Add(blackjack.playerHand[0]);
-                myHand.Add(blackjack.playerHand[1]);
-               // System.Diagnostics.Debug.WriteLine(myHand[0]);
-                PlayerHand.ItemsSource = myHand;
-            }
         }
 
         private void Stand(object sender, RoutedEventArgs e)
         {
-            blackjack.Stand();
+            //TODO: Implement
         }
-        
+
     }
 }
