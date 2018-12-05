@@ -24,7 +24,8 @@ namespace Blackjack
         bool doubleDown;
 
         //TODO: Initialize an array of objects to represent the player's hand (including the dealer)
-        Player player = new Player();
+        //Player players = new Player();
+        List<Player> players = new List<Player>();
 
         /// <summary>
         /// 
@@ -87,6 +88,13 @@ namespace Blackjack
         public Blackjack(int playerCount)
         {
             NumPlayers = playerCount;
+            Player[] player = new Player[NumPlayers];
+            for (int i = 0; i < NumPlayers; i++)
+            {
+                player[i] = new Player();
+                players.Add(player[i]);
+            }
+
             newDeck.Shuffle_Deck();
 
             // TODO create a loop which will deal hands to multiple players
