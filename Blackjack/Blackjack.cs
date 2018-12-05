@@ -131,9 +131,7 @@ namespace Blackjack
 
         public int DoubleDown()
         {
-
             throw new NotImplementedException();
-
         }
 
         public int Split()
