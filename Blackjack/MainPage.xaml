@@ -60,10 +60,10 @@
 
             <!--Start and Exit Buttons-->
             <StackPanel Grid.Column="1"  Orientation="Vertical" Margin="0,300,0,0" HorizontalAlignment="Center">
-                <Button Name="StartMode1" Margin="0,0,0,16" Content="Start Mode 1"
+                <Button Name="StartMode1" Margin="0,0,0,16" Content="Beginner Mode"
                         Background="#66FFFFFF"  BorderThickness="6" BorderBrush="Black" Foreground="Black" 
                         FontSize="30" Click="Start_Mode1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                <Button Name="StartMode2" Margin="0,0,0,16" Content="Start Mode 2"
+                <Button Name="StartMode2" Margin="0,0,0,16" Content="Expert Mode"
                         Background="#66FFFFFF" BorderBrush="Black" BorderThickness="6" Foreground="Black"
                         FontSize="30" Click="Start_Mode2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 <Button Name="QuitButton" Content="Exit Game" HorizontalAlignment="Stretch"
