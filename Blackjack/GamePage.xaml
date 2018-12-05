@@ -9,110 +9,124 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid x:Name="GridBackground" Background="DarkGreen">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
-            <!--Middle column takes 3/5 of total width-->
-            <ColumnDefinition Width= "*" />
-        </Grid.ColumnDefinitions>
-        
-        <!--Settings Bar-->
-        <RelativePanel  Grid.ColumnSpan="2">
-            <!--Settings Menu Button-->
-            <Button
+    <ScrollViewer VerticalScrollBarVisibility="Visible">
+        <Grid x:Name="GridBackground" Background="DarkGreen">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <!--Middle column takes 3/5 of total width-->
+                <ColumnDefinition Width= "*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Settings Bar-->
+            <RelativePanel  Grid.ColumnSpan="2">
+                <!--Settings Menu Button-->
+                <Button
                 Name="Menu" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="25"  
                 Click="Settings_Click" VerticalAlignment="Top" RequestedTheme="Default" FontWeight="Bold"
                 Foreground="White" Background="Black" IsDoubleTapEnabled="False" />
 
 
-            <!--Settings Menu-->
-            <SplitView OpenPaneLength="100" RelativePanel.Below="Menu" Name="Settings"
+                <!--Settings Menu-->
+                <SplitView OpenPaneLength="100" RelativePanel.Below="Menu" Name="Settings"
                            DisplayMode="Inline" RequestedTheme="Dark" >
-                <SplitView.Pane>
-                    <!--Option 1 Stack-->
-                    <StackPanel Orientation="Vertical">
-                        <!--Outer stack to stack different options vertically-->
+                    <SplitView.Pane>
+                        <!--Option 1 Stack-->
                         <StackPanel Orientation="Vertical">
-                            <!--Inner stacks orientate each separate option horizontally-->
-                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 1" />
-                            <RadioButton
+                            <!--Outer stack to stack different options vertically-->
+                            <StackPanel Orientation="Vertical">
+                                <!--Inner stacks orientate each separate option horizontally-->
+                                <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 1" />
+                                <RadioButton
                                     Name ="Option1a" Content="Yes" GroupName="Group1"  Checked="Toggle_Option_1" IsChecked="True"/>
-                            <RadioButton
+                                <RadioButton
                                      Name="Option1b" Content="No" Margin="0,0,0,10" GroupName="Group1" Checked="Toggle_Option_1"/>
-                        </StackPanel>
-                        <!--Option 2 Stack-->
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 2"/>
-                            <RadioButton
+                            </StackPanel>
+                            <!--Option 2 Stack-->
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 2"/>
+                                <RadioButton
                                     Name="Option2a" Content="Yes" GroupName="Group2" Checked="Toggle_Option_2" IsChecked="True"/>
-                            <RadioButton
+                                <RadioButton
                                     Name="Option2b" Content="No" GroupName="Group2" Checked="Toggle_Option_2" IsChecked="False"/>
-                        </StackPanel>
-                        <!--Button to return to title screen-->
-                        <Button x:Name ="TitleReturn" 
+                            </StackPanel>
+                            <!--Button to return to title screen-->
+                            <Button x:Name ="TitleReturn" 
                                 Background="Blue"
                                 Content="Title"
                                 FontWeight="ExtraBlack"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
-                            <!--Flyout to confirm return to title-->
-                            <Button.Flyout>
-                                <Flyout x:Name ="ReturnToTitleFlyout">
-                                    <RelativePanel>
-                                        <TextBlock Name="Title"
+                                <!--Flyout to confirm return to title-->
+                                <Button.Flyout>
+                                    <Flyout x:Name ="ReturnToTitleFlyout">
+                                        <RelativePanel>
+                                            <TextBlock Name="Title"
                                                    Text="Return to Title?"
                                                    HorizontalAlignment="Center"
                                                    Margin="8,0,0,8"/>
-                                        <Button Name="TitleConfirm"
+                                            <Button Name="TitleConfirm"
                                                 RelativePanel.Below="Title"
                                                 Content="Yes"
                                                 Click="Return_Title"
                                                 Margin="0,0,10,0"/>
-                                        <Button Name="QuitCancel"
+                                            <Button Name="QuitCancel"
                                                 RelativePanel.RightOf="TitleConfirm"
                                                 RelativePanel.Below="Title"
                                                 Content="No"
                                                 Click="Close_Flyout"/>
-                                    </RelativePanel>
-                                </Flyout>
-                            </Button.Flyout>
-                        </Button>
-                    </StackPanel>
-                </SplitView.Pane>
-            </SplitView>
-        </RelativePanel>
+                                        </RelativePanel>
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
+                        </StackPanel>
+                    </SplitView.Pane>
+                </SplitView>
+            </RelativePanel>
 
-        <!--This block generates the player hand-->
-        <GridView Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" x:Name="PlayerHand">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding}" Stretch="Fill" Width="100" />
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
 
-        <Image Grid.Column="1"  x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Center" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
-        <Image Grid.Column="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="/Assets/blackjack.png" Stretch="None"/>
-       
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
-            <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
+            <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">
+                <!--This block generates the player hand-->
+                <GridView x:Name="PlayerHand">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding}" Width="100" />
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+                <TextBox Name="Player1"
+                     Text="Player 1" 
+                     TextAlignment="Center"
+                     />
+            </StackPanel>
+
+            <Image Grid.Column="1" Grid.Row="1" MaxHeight="100"  x:Name="backgroundlogo" HorizontalAlignment="Center" VerticalAlignment="Top" Source="Assets/Blackjacklogo.jpg"/>
+            <Image Grid.Column="2" Grid.ColumnSpan="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="Assets/blackjack.png"/>
+
+            <!--Player Control Stackpanel (Hit/Stand)-->
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
+                <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
                     FontSize="30" HorizontalAlignment="Stretch" 
                     Background="#66FFFFFF" Width="100"/>
-            <Button Content="Stand" Click="Stand" FontSize="30" Background="#66FFFFFF"/>
-        </StackPanel>
+                <Button Content="Stand" Click="Stand" FontSize="30" Background="#66FFFFFF"/>
+            </StackPanel>
 
-        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Text="Player 1" VerticalAlignment="Center"/>
-        <TextBox HorizontalAlignment="Center" Text="Dealer" VerticalAlignment="Top"/>
-        
-        <TextBox Grid.Row="1" HorizontalAlignment="Left"  Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>
-        <TextBox Grid.Row="2" HorizontalAlignment="Left" Text="Bet Amount" VerticalAlignment="Top" Height="105" Width="120" CompositeMode="Inherit"/>
+            <!--Dealer Block-->
+            <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Text="Dealer" VerticalAlignment="Center"/>
 
-    </Grid>
+            <!--Stats-->
+            <StackPanel Grid.Row="2" Grid.Column="0">
+                <TextBox HorizontalAlignment="Left"  Text="STATS (w,l,p)" VerticalAlignment="Top" />
+                <TextBox HorizontalAlignment="Left" Text="Bet Amount" VerticalAlignment="Top" />
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

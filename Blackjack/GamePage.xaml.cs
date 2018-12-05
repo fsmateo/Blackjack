@@ -26,15 +26,16 @@ namespace Blackjack
         Blackjack blackjack = new Blackjack();
         ObservableCollection<String> myHand = new ObservableCollection<string>();
         
-
         public GamePage()
         {
             this.InitializeComponent();
+            myHand.Clear();
+            // Add initial cards into the playerHand in UI.
             myHand.Add(blackjack.playerHand[0]);
             myHand.Add(blackjack.playerHand[1]);
-           // System.Diagnostics.Debug.WriteLine(myHand[0]);
+            System.Diagnostics.Debug.WriteLine(myHand.Count);
+            // Bind the UI to myHand
             PlayerHand.ItemsSource = myHand;
-
 
         }
 
@@ -93,22 +94,27 @@ namespace Blackjack
         
         private void Hit(object sender, RoutedEventArgs e)
         {
-            blackjack.Hit();
-
-            // Need to figure out to check for aces to minus 10 from the playerHandValue
-            // make sure all fringe cases are handled as well
-            // TODO: Implement and check for bust.
-            if (blackjack.playerHandValue > 21)
+            try
             {
-                // You busted!!! display a message and restart the game
-                blackjack.nextRound();
+                blackjack.Hit();    // Hit in blackjack class
+            }
+            // TODO: Figure out what exceptions can be raised and handle.
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
 
+            myHand.Add(blackjack.playerHand[blackjack.playerHand.Count - 1]);   // Add last card if hit was successful.
+            // If bust, reinitialize UI hand to the now-reset Blackjack.cs hand.
+            if (blackjack.busted)
+            {
+                // TODO: DISPLAY BUSTED MESSAGE BEFORE RESETTING HAND.
                 myHand.Clear();
                 myHand.Add(blackjack.playerHand[0]);
                 myHand.Add(blackjack.playerHand[1]);
-               // System.Diagnostics.Debug.WriteLine(myHand[0]);
-                PlayerHand.ItemsSource = myHand;
+                blackjack.busted = false;
             }
+
         }
 
         private void Stand(object sender, RoutedEventArgs e)
