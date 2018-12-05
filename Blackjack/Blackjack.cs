@@ -114,13 +114,8 @@ namespace Blackjack
 
         public void Stand()
         {
-            // If the player's hand is less than or equal to 21
-            
-            if (playerHandValue < 21) 
-            {
-                // skip the turn, hence returns nothing
-                playerHand.Add(newDeck.Skip_Card()); 
-            }
+            // skip the turn, hence returns nothing
+            playerHand.Add(newDeck.Skip_Card());
 
             playerHandValue = 0;
 
