@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Blackjack.GamePage"
+   x:Class="Blackjack.GamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Blackjack"
@@ -8,60 +8,63 @@
     xmlns:data="using:Blackjack"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Grid Background="DarkGreen">
+          <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto"/> 
+              <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
 
-    <Grid x:Name="GridBackground" Background="DarkGreen">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+                <!--Middle column takes 3/5 of total width-->
+                <ColumnDefinition Width= "*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
-            <!--Middle column takes 3/5 of total width-->
-            <ColumnDefinition Width= "*" />
-        </Grid.ColumnDefinitions>
-        
-        <!--Settings Bar-->
-        <RelativePanel  Grid.ColumnSpan="2">
-            <!--Settings Menu Button-->
-            <Button
-                Name="Menu" Content="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="25"  
-                Click="Settings_Click" VerticalAlignment="Top" RequestedTheme="Default" FontWeight="Bold"
-                Foreground="White" Background="Black" IsDoubleTapEnabled="False" />
-
-
-            <!--Settings Menu-->
-            <SplitView OpenPaneLength="100" RelativePanel.Below="Menu" Name="Settings"
-                           DisplayMode="Inline" RequestedTheme="Dark" >
-                <SplitView.Pane>
-                    <!--Option 1 Stack-->
-                    <StackPanel Orientation="Vertical">
-                        <!--Outer stack to stack different options vertically-->
-                        <StackPanel Orientation="Vertical">
-                            <!--Inner stacks orientate each separate option horizontally-->
-                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 1" />
-                            <RadioButton
-                                    Name ="Option1a" Content="Yes" GroupName="Group1"  Checked="Toggle_Option_1" IsChecked="True"/>
-                            <RadioButton
-                                     Name="Option1b" Content="No" Margin="0,0,0,10" GroupName="Group1" Checked="Toggle_Option_1"/>
-                        </StackPanel>
-                        <!--Option 2 Stack-->
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontWeight="Bold" Text="Option 2"/>
-                            <RadioButton
-                                    Name="Option2a" Content="Yes" GroupName="Group2" Checked="Toggle_Option_2" IsChecked="True"/>
-                            <RadioButton
-                                    Name="Option2b" Content="No" GroupName="Group2" Checked="Toggle_Option_2" IsChecked="False"/>
-                        </StackPanel>
-                        <!--Button to return to title screen-->
-                        <Button x:Name ="TitleReturn" 
-                                Background="Blue"
-                                Content="Title"
-                                FontWeight="ExtraBlack"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+            <!--Side Menu Bar-->
+        <SplitView x:Name="CoolMenu" IsPaneOpen="False" DisplayMode="CompactOverlay" CompactPaneLength="50" 
+               OpenPaneLength="250">
+            <SplitView.Pane>
+                <StackPanel Background="DarkRed">
+                    <!--https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font-->
+                    <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Background="{x:Null}"
+                        Click="MenuButton_Click" FontSize="30"/>
+                    <!--Game Rules-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button1" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE7fc;"/>
+                        <TextBlock Text="Game Rules" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Player Stats-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button2" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE76e;"/>
+                        <TextBlock Text="Player Stats" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Get More Chips-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button3" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE7bf;"/>
+                        <TextBlock Text="Get More Chips" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Creators-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button4" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE70f;"/>
+                        <TextBlock Text="Creators" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Github Link-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button5" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE72d;"/>
+                        <TextBlock Text="GitHub Link" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Return to Title Page-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button6" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE97a;">
                             <!--Flyout to confirm return to title-->
                             <Button.Flyout>
                                 <Flyout x:Name ="ReturnToTitleFlyout">
@@ -84,11 +87,25 @@
                                 </Flyout>
                             </Button.Flyout>
                         </Button>
+                    
+                            <TextBlock Text="Return To Front Page" FontSize="18" VerticalAlignment="Center"/>
                     </StackPanel>
-                </SplitView.Pane>
-            </SplitView>
-        </RelativePanel>
-
+                    <!--Save State-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button7" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE792;"/>
+                        <TextBlock Text="Save State" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Exits Game-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button8" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE7e8;"/>
+                        <TextBlock Text="Exit Game" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+        
         <!--This block generates the player hand-->
         <GridView Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" x:Name="PlayerHand">
             <GridView.ItemTemplate>
@@ -97,22 +114,22 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-
-        <Image Grid.Column="1"  x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Center" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
-        <Image Grid.Column="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="/Assets/blackjack.png" Stretch="None"/>
-       
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
-            <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
-                    FontSize="30" HorizontalAlignment="Stretch" 
-                    Background="#66FFFFFF" Width="100"/>
-            <Button Content="Stand" Click="Stand" FontSize="30" Background="#66FFFFFF"/>
-        </StackPanel>
-
-        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Text="Player 1" VerticalAlignment="Center"/>
-        <TextBox HorizontalAlignment="Center" Text="Dealer" VerticalAlignment="Top"/>
         
-        <TextBox Grid.Row="1" HorizontalAlignment="Left"  Text="STATS (w,l,p)" VerticalAlignment="Top" Height="105" Width="120"/>
-        <TextBox Grid.Row="2" HorizontalAlignment="Left" Text="Bet Amount" VerticalAlignment="Top" Height="105" Width="120" CompositeMode="Inherit"/>
+        <!--User Buttons-->
+        <StackPanel Height="150" Margin="0,550,0,20">
+            <Button  Margin="0,0,0,20" Content="Hit"
+                        Background="#66FFFFFF"  BorderThickness="6" BorderBrush="Black" Foreground="Black" 
+                        FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                        Width="200"/>
+            <Button  Margin="00,0,0,20" Content="Stand"
+                        Background="#66FFFFFF"  BorderThickness="6" BorderBrush="Black" Foreground="Black" 
+                        FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                        Width="200"/>
+        </StackPanel>
+        <StackPanel Height="110" Margin="0,0,0,600">
 
+            <TextBlock Text="BlackJack Big Group" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        </StackPanel>
     </Grid>
 </Page>
