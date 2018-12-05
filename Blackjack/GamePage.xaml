@@ -18,28 +18,104 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" />
-                <!--Middle column takes 3/5 of total width-->
-                <ColumnDefinition Width= "*" />
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <!--Middle column takes 3/5 of total width-->
+            <ColumnDefinition Width= "*" />
+        </Grid.ColumnDefinitions>
 
+        <!--Side Menu Bar-->
+        <SplitView x:Name="CoolMenu" IsPaneOpen="False" DisplayMode="CompactOverlay" CompactPaneLength="50" 
+               OpenPaneLength="250">
+            <SplitView.Pane>
+                <StackPanel Background="DarkRed">
+                    <!--https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font-->
+                    <Button x:Name="MenuButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Background="{x:Null}"
+                        Click="MenuButton_Click" FontSize="30"/>
+                    <!--Game Rules-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button1" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE7fc;"/>
+                        <TextBlock Text="Game Rules" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Player Stats-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button2" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE76e;"/>
+                        <TextBlock Text="Player Stats" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Get More Chips-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button3" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE7bf;"/>
+                        <TextBlock Text="Get More Chips" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Creators-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button4" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE70f;"/>
+                        <TextBlock Text="Creators" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Github Link-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button5" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE72d;"/>
+                        <TextBlock Text="GitHub Link" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Return to Title Page-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button6" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE97a;">
+                            <!--Flyout to confirm return to title-->
+                            <Button.Flyout>
+                                <Flyout x:Name ="ReturnToTitleFlyout">
+                                    <RelativePanel>
+                                        <TextBlock Name="Title"
+                                                   Text="Return to Title?"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="8,0,0,8"/>
+                                        <Button Name="TitleConfirm"
+                                                RelativePanel.Below="Title"
+                                                Content="Yes"
+                                                Click="Return_Title"
+                                                Margin="0,0,10,0"/>
+                                        <Button Name="QuitCancel"
+                                                RelativePanel.RightOf="TitleConfirm"
+                                                RelativePanel.Below="Title"
+                                                Content="No"
+                                                Click="Close_Flyout"/>
+                                    </RelativePanel>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
 
-            <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">
-                <!--This block generates the player hand-->
-                <GridView x:Name="PlayerHand">
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding}" Width="100" />
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-                <TextBox Name="Player1"
-                     Text="Player 1" 
-                     TextAlignment="Center"
-                     />
-            </StackPanel>
+                        <TextBlock Text="Return To Front Page" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Save State-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button7" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE792;"/>
+                        <TextBlock Text="Save State" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <!--Exits Game-->
+                    <StackPanel Orientation="Horizontal">
+                        <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button8" 
+                            FontFamily="Segoe MDL2 Assets" Content="&#xE7e8;"/>
+                        <TextBlock Text="Exit Game" FontSize="18" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+        </SplitView>
+
+        <!--This block generates the player hand-->
+        <GridView Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" x:Name="PlayerHand">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding}" Stretch="Fill" Width="100" />
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
 
             <Image Grid.Column="1" Grid.Row="1" MaxHeight="100"  x:Name="backgroundlogo" HorizontalAlignment="Center" VerticalAlignment="Top" Source="Assets/Blackjacklogo.jpg"/>
             <Image Grid.Column="2" Grid.ColumnSpan="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="Assets/blackjack.png"/>
@@ -47,9 +123,11 @@
             <!--Player Control Stackpanel (Hit/Stand)-->
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2">
                 <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
-                    FontSize="30" HorizontalAlignment="Stretch" 
-                    Background="#66FFFFFF" Width="100"/>
-                <Button Content="Stand" Click="Stand" FontSize="30" Background="#66FFFFFF"/>
+                        FontSize="30" HorizontalAlignment="Stretch" 
+                        Background="#66FFFFFF" Width="150"
+                        BorderThickness="6" BorderBrush="Black"/>
+                <Button Content="Stand" Click="Stand" FontSize="30" Background="#66FFFFFF"
+                        HorizontalAlignment="Stretch" BorderThickness="6" BorderBrush="Black"/>
             </StackPanel>
 
             <!--Dealer Block-->
