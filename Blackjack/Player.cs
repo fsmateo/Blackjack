@@ -12,10 +12,7 @@ namespace Blackjack
         private List<string> playerHand = new List<string>();
 
         //Explicit public constructor
-        public Player()
-        {
-
-        }
+        public Player() { }
 
         public void PlayerHandValue(int value)
         {
