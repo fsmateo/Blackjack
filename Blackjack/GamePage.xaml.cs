@@ -65,7 +65,7 @@ namespace Blackjack
         /// <param name="e"></param>
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            Settings.IsPaneOpen = !Settings.IsPaneOpen;
+            CoolMenu.IsPaneOpen = !CoolMenu.IsPaneOpen;
         }
 
         /// <summary>
