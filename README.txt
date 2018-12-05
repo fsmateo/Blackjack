@@ -1,14 +1,16 @@
 # Blackjack
 
+
  Huy and Matt will be working on the Blackjack algorithm
  
  Anush and Carlo will be working on UI design 
  
- Brandon will be working on Menu design and backend
+ Brandon will be working on AI for the dealer and additional players
  
  Ferdinand will be assisting with algorithm and UI design
  
- Steps for accessing the project
+ 
+ Steps for accessing the project:
  
  1) Download the GitHub extension for Visual Studio:
  https://visualstudio.github.com/
