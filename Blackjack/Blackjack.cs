@@ -22,6 +22,7 @@ namespace Blackjack
         bool hit;
         bool stand;
         bool doubleDown;
+        public bool busted;    // Variable will be set when playerHand > 21, only UI class will reset this variable.
 
         //TODO: Initialize an array of objects to represent the player's hand (including the dealer)
         //Player players = new Player();
@@ -42,24 +43,12 @@ namespace Blackjack
             dealerHand.Add(newDeck.Deal_Card());
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
-            // Print the Hands out
 
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
-
-            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
-            foreach (string s in dealerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                dealerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
-
+            // Add their values
+            playerHandValue += Card_Value(playerHand[0]);
+            playerHandValue += Card_Value(playerHand[1]);
+            dealerHandValue += Card_Value(dealerHand[0]);
+            dealerHandValue += Card_Value(dealerHand[1]);
 
             // This logic is unnecessary as the Hit and Stand methods will be called from GamePage.xaml.cs
             // and do not need to be called in the constructor for this class (Brandon)
@@ -103,20 +92,15 @@ namespace Blackjack
 
         public void Hit()
         {
-
-            // TODO: add logic to check for bust
-            playerHandValue = 0;
-            playerHand.Add(newDeck.Deal_Card());          
-
-
-            // Print the Hands out
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
+            // Create string with card from the deck and add its value.
+            string cardToAdd = newDeck.Deal_Card();
+            playerHand.Add(cardToAdd);
+            playerHandValue += Card_Value(cardToAdd);
+            // Check for bust, but only set the flag so that the UI can update before hand is reset.
+            if (playerHandValue > 21)
             {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
+                busted = true;
             }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
 
         }
 
@@ -125,13 +109,11 @@ namespace Blackjack
             // skip the turn, hence returns nothing
             playerHand.Add(newDeck.Skip_Card());
 
-            playerHandValue = 0;
 
             System.Diagnostics.Debug.WriteLine("Player Hand: ");
             foreach (string s in playerHand)
             {
                 System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
             }
             System.Diagnostics.Debug.WriteLine($"Player Hand Value = {playerHandValue}");
 
@@ -152,38 +134,126 @@ namespace Blackjack
             throw new NotImplementedException();
         }
 
+
+        /// <summary>
+        /// dealt_Card value is determined via case statements
+        /// and the determined value is returned as type int.
+        /// </summary>
+        /// <param name="dealt_Card"></param>
+        /// <returns></returns>
+        public int Card_Value(string dealt_Card)
+        {
+
+            // TODO: Figure out how to add logic for Ace value
+            switch (dealt_Card)
+            {
+                case "Assets/2_C.png":
+                case "Assets/2_D.png":
+                case "Assets/2_H.png":
+                case "Assets/2_S.png":
+                    return 2;
+                    
+                case "Assets/3_C.png":
+                case "Assets/3_D.png":
+                case "Assets/3_H.png":
+                case "Assets/3_S.png":
+                    return 3;
+                    
+                case "Assets/4_C.png":
+                case "Assets/4_D.png":
+                case "Assets/4_H.png":
+                case "Assets/4_S.png":
+                    return 4;
+                    
+                case "Assets/5_C.png":
+                case "Assets/5_D.png":
+                case "Assets/5_H.png":
+                case "Assets/5_S.png":
+                    return 5;
+                    
+                case "Assets/6_C.png":
+                case "Assets/6_D.png":
+                case "Assets/6_H.png":
+                case "Assets/6_S.png":
+                    return 6;
+                    
+                case "Assets/7_C.png":
+                case "Assets/7_D.png":
+                case "Assets/7_H.png":
+                case "Assets/7_S.png":
+                    return 7;
+                    
+                case "Assets/8_C.png":
+                case "Assets/8_D.png":
+                case "Assets/8_H.png":
+                case "Assets/8_S.png":
+                    return 8;
+                    
+                case "Assets/9_C.png":
+                case "Assets/9_D.png":
+                case "Assets/9_H.png":
+                case "Assets/9_S.png":
+                    return 9;
+                    
+                case "Assets/T_C.png":
+                case "Assets/T_D.png":
+                case "Assets/T_H.png":
+                case "Assets/T_S.png":
+                case "Assets/J_C.png":
+                case "Assets/J_D.png":
+                case "Assets/J_H.png":
+                case "Assets/J_S.png":
+                case "Assets/Q_C.png":
+                case "Assets/Q_D.png":
+                case "Assets/Q_H.png":
+                case "Assets/Q_S.png":
+                case "Assets/K_C.png":
+                case "Assets/K_D.png":
+                case "Assets/K_H.png":
+                case "Assets/K_S.png":
+                    return 10;
+
+                case "Assets/A_C.png":
+                case "Assets/A_D.png":
+                case "Assets/A_H.png":
+                case "Assets/A_S.png":
+                    if (playerHandValue > 10)
+                        return 1;
+                    else
+                        return 11;
+
+                default:
+                    return 0;
+            }
+        }
+
         /// <summary>
         /// Copy of the contructor for creating a new game, although this method will not shuffle the deck
         /// until there no cards remaining
         /// </summary>
-        public void nextRound()
+        public void NextRound()
         {
             if (newDeck.CardsInStack() < 10)
                 newDeck.Shuffle_Deck();
+            
+            // Reset cards in hand and value of hands.
+            playerHand.Clear();
+            dealerHand.Clear();
+            playerHandValue = 0;
+            dealerHandValue = 0;
 
             // Deal the cards to the player and the dealer
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
+            // Add their values
+            playerHandValue += Card_Value(playerHand[0]);
+            playerHandValue += Card_Value(playerHand[1]);
+            dealerHandValue += Card_Value(dealerHand[0]);
+            dealerHandValue += Card_Value(dealerHand[1]);
 
-            // Print the Hands out
-
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
-
-            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
-            foreach (string s in dealerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                dealerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
+            busted = false;  // Reset busted flag.
         }
 
     }
