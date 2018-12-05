@@ -33,9 +33,9 @@ namespace Blackjack
             // Add initial cards into the playerHand in UI.
             myHand.Add(blackjack.playerHand[0]);
             myHand.Add(blackjack.playerHand[1]);
-            System.Diagnostics.Debug.WriteLine(myHand.Count);
             // Bind the UI to myHand
             PlayerHand.ItemsSource = myHand;
+            System.Diagnostics.Debug.WriteLine(blackjack.playerHandValue);
 
         }
 
@@ -64,7 +64,7 @@ namespace Blackjack
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
             CoolMenu.IsPaneOpen = !CoolMenu.IsPaneOpen;
         }
@@ -105,14 +105,15 @@ namespace Blackjack
             }
 
             myHand.Add(blackjack.playerHand[blackjack.playerHand.Count - 1]);   // Add last card if hit was successful.
+            System.Diagnostics.Debug.WriteLine(myHand[myHand.Count - 1]);
             // If bust, reinitialize UI hand to the now-reset Blackjack.cs hand.
             if (blackjack.busted)
             {
                 // TODO: DISPLAY BUSTED MESSAGE BEFORE RESETTING HAND.
+                blackjack.NextRound();
                 myHand.Clear();
                 myHand.Add(blackjack.playerHand[0]);
                 myHand.Add(blackjack.playerHand[1]);
-                blackjack.busted = false;
             }
 
         }

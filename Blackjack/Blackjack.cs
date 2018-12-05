@@ -43,24 +43,12 @@ namespace Blackjack
             dealerHand.Add(newDeck.Deal_Card());
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
-            // Print the Hands out
 
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
-
-            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
-            foreach (string s in dealerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                dealerHandValue += Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
-
+            // Add their values
+            playerHandValue += Card_Value(playerHand[0]);
+            playerHandValue += Card_Value(playerHand[1]);
+            dealerHandValue += Card_Value(dealerHand[0]);
+            dealerHandValue += Card_Value(dealerHand[1]);
 
             // This logic is unnecessary as the Hit and Stand methods will be called from GamePage.xaml.cs
             // and do not need to be called in the constructor for this class (Brandon)
@@ -106,15 +94,12 @@ namespace Blackjack
         {
             // Create string with card from the deck and add its value.
             string cardToAdd = newDeck.Deal_Card();
-            System.Diagnostics.Debug.WriteLine(cardToAdd);
             playerHand.Add(cardToAdd);
             playerHandValue += Card_Value(cardToAdd);
- 
-            // Check for bust.
+            // Check for bust, but only set the flag so that the UI can update before hand is reset.
             if (playerHandValue > 21)
             {
-                // You busted!!! display a message and restart the game
-                nextRound();
+                busted = true;
             }
 
         }
@@ -129,7 +114,6 @@ namespace Blackjack
             foreach (string s in playerHand)
             {
                 System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += Card_Value(s);
             }
             System.Diagnostics.Debug.WriteLine($"Player Hand Value = {playerHandValue}");
 
@@ -247,7 +231,7 @@ namespace Blackjack
         /// Copy of the contructor for creating a new game, although this method will not shuffle the deck
         /// until there no cards remaining
         /// </summary>
-        public void nextRound()
+        public void NextRound()
         {
             if (newDeck.CardsInStack() < 10)
                 newDeck.Shuffle_Deck();
@@ -257,30 +241,19 @@ namespace Blackjack
             dealerHand.Clear();
             playerHandValue = 0;
             dealerHandValue = 0;
+
             // Deal the cards to the player and the dealer
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
             playerHand.Add(newDeck.Deal_Card());
             dealerHand.Add(newDeck.Deal_Card());
+            // Add their values
+            playerHandValue += Card_Value(playerHand[0]);
+            playerHandValue += Card_Value(playerHand[1]);
+            dealerHandValue += Card_Value(dealerHand[0]);
+            dealerHandValue += Card_Value(dealerHand[1]);
 
-            busted = true;  // Setting busted AFTER cards are dealt to avoid UI copying incorrect hand.
-            // Print the Hands out
-
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
-
-            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
-            foreach (string s in dealerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                dealerHandValue += Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
+            busted = false;  // Reset busted flag.
         }
 
     }
