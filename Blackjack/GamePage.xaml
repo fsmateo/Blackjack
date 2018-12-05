@@ -62,7 +62,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button5" 
                                 FontFamily="Segoe MDL2 Assets" Content="&#xE72d;"/>
-                            <TextBlock Text="GitHub Link" FontSize="16" VerticalAlignment="Center"/>
+                            <HyperlinkButton Content="GitHub Link" NavigateUri="https://github.com/bveltre/Blackjack" FontSize="16"/>
                         </StackPanel>
                         <!--Return to Title Page-->
                         <StackPanel Orientation="Horizontal">
@@ -93,15 +93,9 @@
 
                             <TextBlock Text="Return To Front" FontSize="16" VerticalAlignment="Center"/>
                         </StackPanel>
-                        <!--Save State-->
-                        <StackPanel Orientation="Horizontal">
-                            <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button7" 
-                                FontFamily="Segoe MDL2 Assets" Content="&#xE792;"/>
-                            <TextBlock Text="Save State" FontSize="16" VerticalAlignment="Center"/>
-                        </StackPanel>
                         <!--Exits Game-->
                         <StackPanel Orientation="Horizontal">
-                            <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button8" 
+                            <Button FontSize="30" Margin="0,0,0,0" Background="{x:Null}" x:Name="Button7" 
                                 FontFamily="Segoe MDL2 Assets" Content="&#xE7e8;"/>
                             <TextBlock Text="Exit Game" FontSize="16" VerticalAlignment="Center"/>
                         </StackPanel>
