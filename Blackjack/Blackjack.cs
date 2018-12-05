@@ -7,134 +7,50 @@ using System.Threading.Tasks;
 namespace Blackjack
 {
     /// <summary>
-    /// This class will handle setting up the deck and managing the hands as well as the AI players
+    /// This class will handle the player and dealer hands as well as the Hit, Stand, DoubleDown, Split, and Surrender methods
     /// </summary>
-    class Blackjack
+    class Blackjack : IComparable<Blackjack>
     {
-        // TODO: Add methods and member variables needed to organize the card game aspect of the program
-        // TODO: Integrate Hand, Deck, and AI classes into this class 
-        public int NumPlayers { get; set; }
-        public int playerHandValue { get; set; }
-        private int dealerHandValue { get; set; }
-        public List<string> playerHand = new List<string>();
-        List<string> dealerHand = new List<string>();
         Deck newDeck = new Deck();
-        bool hit;
-        bool stand;
-        bool doubleDown;
-
-        //TODO: Initialize an array of objects to represent the player's hand (including the dealer)
-        //Player players = new Player();
-        List<Player> players = new List<Player>();
+        public Player player = new Player();
+        private Player dealer = new Player();
 
         /// <summary>
-        /// 
+        /// This constructor will shuffle the deck, deal cards to the dealer and player, and display the values in the 
+        /// debug console for testing
         /// </summary>
         public Blackjack()
         {
-            NumPlayers = 2; // Dealer and human player
             // create new deck object first            
             // Shuffle the deck and generate the stack
             newDeck.Shuffle_Deck();
             
             // Deal the cards to the player and the dealer
-            playerHand.Add(newDeck.Deal_Card());
-            dealerHand.Add(newDeck.Deal_Card());
-            playerHand.Add(newDeck.Deal_Card());
-            dealerHand.Add(newDeck.Deal_Card());
-            // Print the Hands out
+            player.AddCard(newDeck.Deal_Card());
+            dealer.AddCard(newDeck.Deal_Card());
+            player.AddCard(newDeck.Deal_Card());
+            dealer.AddCard(newDeck.Deal_Card());
 
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
-
-            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
-            foreach (string s in dealerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                dealerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
-
-
-            // This logic is unnecessary as the Hit and Stand methods will be called from GamePage.xaml.cs
-            // and do not need to be called in the constructor for this class (Brandon)
-            //// ToDO: need to program buttons for the UI team to send a true when the user hits the button
-            //if (hit == true)
-            //{
-            //    Hit();
-            //}
-
-            //if (stand == true)
-            //{
-            //    Stand();
-            //}
-
-            //if (doubleDown == true)
-            //{
-            //    DoubleDown();
-            //}
-
-        }
+            // Print the game state to the Debug Console
+            System.Diagnostics.Debug.Write(this.ToString());
+        }    
 
         /// <summary>
-        /// Explicit value constructor for more than two players
+        /// 
         /// </summary>
-        /// <param name="playerCount"></param>
-        public Blackjack(int playerCount)
-        {
-            NumPlayers = playerCount;
-            Player[] player = new Player[NumPlayers];
-            for (int i = 0; i < NumPlayers; i++)
-            {
-                player[i] = new Player();
-                players.Add(player[i]);
-            }
-
-            newDeck.Shuffle_Deck();
-
-            // TODO create a loop which will deal hands to multiple players
-
-        }
-
         public void Hit()
         {
-
-            // TODO: add logic to check for bust
-            playerHandValue = 0;
-            playerHand.Add(newDeck.Deal_Card());          
-
+            // TODO: add logic to check for bust            
+            player.AddCard(newDeck.Deal_Card());
 
             // Print the Hands out
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
+            System.Diagnostics.Debug.Write(player.ToString());
 
         }
 
         public void Stand()
         {
-            // skip the turn, hence returns nothing
-            playerHand.Add(newDeck.Skip_Card());
-
-            playerHandValue = 0;
-
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value = {playerHandValue}");
-
+            System.Diagnostics.Debug.Write(player.ToString());
         }
 
         public int DoubleDown()
@@ -162,29 +78,28 @@ namespace Blackjack
                 newDeck.Shuffle_Deck();
 
             // Deal the cards to the player and the dealer
-            playerHand.Add(newDeck.Deal_Card());
-            dealerHand.Add(newDeck.Deal_Card());
-            playerHand.Add(newDeck.Deal_Card());
-            dealerHand.Add(newDeck.Deal_Card());
+            player.AddCard(newDeck.Deal_Card());
+            dealer.AddCard(newDeck.Deal_Card());
+            player.AddCard(newDeck.Deal_Card());
+            dealer.AddCard(newDeck.Deal_Card());
 
-            // Print the Hands out
+            // Print the game state to the Debug Console
+            System.Diagnostics.Debug.Write(this.ToString());
 
-            System.Diagnostics.Debug.WriteLine("Player Hand: ");
-            foreach (string s in playerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                playerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Player Hand Value =  {playerHandValue}");
-
-            System.Diagnostics.Debug.WriteLine("Dealer Hand: ");
-            foreach (string s in dealerHand)
-            {
-                System.Diagnostics.Debug.WriteLine(s);
-                dealerHandValue += newDeck.Card_Value(s);
-            }
-            System.Diagnostics.Debug.WriteLine($"Dealer Hand Value =  {dealerHandValue}");
         }
 
+        public int CompareTo(Blackjack other)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            string gameState = "Player Hand: \n" +
+                $"{player.ToString()}\n" +
+                $"Dealer Hand: \n" +
+                $"{dealer.ToString()}\n";
+            return gameState;            
+        }
     }
 }

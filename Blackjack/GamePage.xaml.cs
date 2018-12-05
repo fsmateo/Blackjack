@@ -30,8 +30,8 @@ namespace Blackjack
         public GamePage()
         {
             this.InitializeComponent();
-            myHand.Add(blackjack.playerHand[0]);
-            myHand.Add(blackjack.playerHand[1]);
+            myHand.Add(blackjack.player.playerHand[0]);
+            myHand.Add(blackjack.player.playerHand[1]);
            // System.Diagnostics.Debug.WriteLine(myHand[0]);
             PlayerHand.ItemsSource = myHand;
 
@@ -94,21 +94,6 @@ namespace Blackjack
         private void Hit(object sender, RoutedEventArgs e)
         {
             blackjack.Hit();
-
-            // Need to figure out to check for aces to minus 10 from the playerHandValue
-            // make sure all fringe cases are handled as well
-            // TODO: Implement and check for bust.
-            if (blackjack.playerHandValue > 21)
-            {
-                // You busted!!! display a message and restart the game
-                blackjack.nextRound();
-
-                myHand.Clear();
-                myHand.Add(blackjack.playerHand[0]);
-                myHand.Add(blackjack.playerHand[1]);
-               // System.Diagnostics.Debug.WriteLine(myHand[0]);
-                PlayerHand.ItemsSource = myHand;
-            }
         }
 
         private void Stand(object sender, RoutedEventArgs e)

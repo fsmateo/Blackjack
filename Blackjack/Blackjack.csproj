@@ -129,7 +129,7 @@
     <Content Include="Assets\5_D.png" />
     <Content Include="Assets\5_H.png" />
     <Content Include="Assets\5_S.png" />
-    <Content Include="Assets\6-C.png" />
+    <Content Include="Assets\6_C.png" />
     <Content Include="Assets\6_D.png" />
     <Content Include="Assets\6_H.png" />
     <Content Include="Assets\6_S.png" />
@@ -141,7 +141,7 @@
     <Content Include="Assets\8_D.png" />
     <Content Include="Assets\8_H.png" />
     <Content Include="Assets\8_S.png" />
-    <Content Include="Assets\9-C.png" />
+    <Content Include="Assets\9_C.png" />
     <Content Include="Assets\9_D.png" />
     <Content Include="Assets\9_H.png" />
     <Content Include="Assets\9_S.png" />
@@ -149,9 +149,6 @@
     <Content Include="Assets\A_D.png" />
     <Content Include="Assets\A_H.png" />
     <Content Include="Assets\A_S.png" />
-    <Content Include="Assets\blackjack.png" />
-    <Content Include="Assets\blackjackhand.png" />
-    <Content Include="Assets\Blackjacklogo.jpg" />
     <Content Include="Assets\J_C.png" />
     <Content Include="Assets\J_D.png" />
     <Content Include="Assets\J_H.png" />

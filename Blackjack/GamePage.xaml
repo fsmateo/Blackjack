@@ -98,8 +98,8 @@
             </GridView.ItemTemplate>
         </GridView>
 
-        <Image Grid.Column="1"  x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Center" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/>
-        <Image Grid.Column="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="/Assets/blackjack.png" Stretch="None"/>
+        <!--Image Grid.Column="1"  x:Name="backgroundlogo" HorizontalAlignment="Center" Height="81" VerticalAlignment="Center" Source="/Assets/Blackjacklogo.jpg" Margin="0,128,0,0"/-->
+        <!--Image Grid.Column="1" x:Name="BlackJacklogocorner" HorizontalAlignment="Center" VerticalAlignment="Top"  Source="/Assets/blackjack.png" Stretch="None"/-->
        
         <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
             <Button Content="Hit" Click="Hit" Margin="0,0,0,20"
