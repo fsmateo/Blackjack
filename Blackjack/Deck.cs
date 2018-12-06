@@ -8,63 +8,68 @@ namespace Blackjack
 {
     class Deck
     {
-        private string[] deck_Of_Cards;
-        private const int num_Faces = 13;
-        private const int num_Suits = 4;
-        private const int num_Cards = 52;
-        private int cardVal = 0;
-        private Stack<string> stack_Deck = new Stack<string>();
-
-        public Deck()
-        {
-            string[] the_Deck = new string[num_Cards];
-            deck_Of_Cards = the_Deck;
-            int count = 0;
-            string[] faces = {"Ace", "2", "3", "4",  "5",
-                               "6", "7", "8", "9", "10",
-                               "Jack", "Queen", "King"};
-
-            //suits: Clubs, Diamonds, Hearts, Spades
-            string[] suits = { "C", "D", "H", "S" };
-
-            for (int face = 0; face < num_Faces; face++)
+         private const int num_Faces = 13; 
+         private const int num_Suits = 4;
+         private const int num_Cards = 52;
+         // This will be the stack to store the game's actual deck of cards, will be reshuffled, drawn from, etc.
+         private Stack<string> deck = new Stack<string>();
+         /* This is an array to store all 52 cards, it will not be drawn from or added to upon intialization.
+          * It is static to avoid making multiple copies with multiple decks.
+          * Will be used to create the deck stack(s) and when shuffling. */
+         private static string[] unshuffledDeck = new string[52];
+         public Deck()
+         {
+            // If the array of ordered cards is empty, create it.
+            if (unshuffledDeck[0] == null)
             {
-                for (int suit = 0; suit < num_Suits; suit++, count++)
+                int count = 0;
+                // T is 10, J is Jack, and so on.
+                char[] faces = { 'A', '2', '3', '4',  '5',
+                             '6', '7', '8', '9', 'T',
+                             'J', 'Q', 'K' };
+
+                //suits: Clubs, Diamonds, Hearts, Spades
+                char[] suits = { 'C', 'D', 'H', 'S' };
+
+                for (int face = 0; face < num_Faces; face++)
                 {
-                    the_Deck[count] = faces[face] + "_" + suits[suit];
+                    for (int suit = 0; suit < num_Suits; suit++, count++)
+                    {
+                        char[] temp = { 'A', 's', 's', 'e', 't', 's', '/', faces[face], '_', suits[suit], '.', 'p', 'n', 'g' };
+                        string card = new string(temp);
+                        unshuffledDeck[count] = card;
+                    }
                 }
             }
-        }
 
-        //Reference: https://bit.ly/2OVo1G9
-        public static void Shuffle<T>(T[] deck_Of_Cards)
-        {
+         }
+
+         //Reference: https://bit.ly/2OVo1G9
+         public static void Shuffle(Stack<string> deck_Of_Cards)
+         {
+            deck_Of_Cards.Clear();
             Random rand = new Random();
-            //For each spot in the array, pick
-            //a random item to swap into that spot.
-            for (int i = 0; i < deck_Of_Cards.Length - 1; i++)
+            //For each spot in the array, 
+            //a random item to swap into that spot
+            int i;
+            for (i = 0; i < 52; i++)
             {
-                int j = rand.Next(i, deck_Of_Cards.Length);
-                T temp = deck_Of_Cards[i];
-                deck_Of_Cards[i] = deck_Of_Cards[j];
-                deck_Of_Cards[j] = temp;
+                int j = rand.Next(i, 52);
+                string temp = unshuffledDeck[i];
+                unshuffledDeck[i] = unshuffledDeck[j];
+                unshuffledDeck[j] = temp;
             }
-        }
+            for (i = 0; i < 52; ++i)
+            {
+                deck_Of_Cards.Push(unshuffledDeck[i]);
+            }
+         }
 
-        public void Shuffle_Deck()
-        {
-            Shuffle(deck_Of_Cards);
-        }
-        /// <summary>
-        /// Stacks the deck of cards.
-        /// </summary>
-        public void Stack_Deck()
-        {
-            for (int i = 0; i < num_Cards; i++)
-            {
-                stack_Deck.Push(deck_Of_Cards[i]);
-            }
-        }
+         public void Shuffle_Deck()
+         {
+             Shuffle(deck);
+         }
+
         /// <summary>
         /// Deals a card from the top of the Stack.
         /// </summary>
@@ -72,94 +77,22 @@ namespace Blackjack
         public string Deal_Card()
         {
             string top_Card = "";
-            top_Card = stack_Deck.Pop();
+            top_Card = deck.Pop();
             return top_Card;
         }
+
+        public string Skip_Card()
+        {
+            return "0";
+        }
+
         /// <summary>
         /// Checks the remaining number of cards in the deck.
         /// </summary>
-        public void CardsInStack()
+        public int CardsInStack()
         {
-            Console.WriteLine(stack_Deck.Count());
+            return deck.Count();
         }
-        /// <summary>
-        /// dealt_Card value is determined via case statements
-        /// and the determined value is returned as type int.
-        /// </summary>
-        /// <param name="dealt_Card"></param>
-        /// <returns></returns>
-        public int Card_Value(string dealt_Card)
-        {
-            switch (dealt_Card)
-            {
-                case "2_C":
-                case "2_D":
-                case "2_H":
-                case "2_S":
-                    cardVal = 2;
-                    break;
-                case "3_C":
-                case "3_D":
-                case "3_H":
-                case "3_S":
-                    cardVal = 3;
-                    break;
-                case "4_C":
-                case "4_D":
-                case "4_H":
-                case "4_S":
-                    cardVal = 4;
-                    break;
-                case "5_C":
-                case "5_D":
-                case "5_H":
-                case "5_S":
-                    cardVal = 5;
-                    break;
-                case "6_C":
-                case "6_D":
-                case "6_H":
-                case "6_S":
-                    cardVal = 6;
-                    break;
-                case "7_C":
-                case "7_D":
-                case "7_H":
-                case "7_S":
-                    cardVal = 7;
-                    break;
-                case "8_C":
-                case "8_D":
-                case "8_H":
-                case "8_S":
-                    cardVal = 8;
-                    break;
-                case "9_C":
-                case "9_D":
-                case "9_H":
-                case "9_S":
-                    cardVal = 9;
-                    break;
-                case "10_C":
-                case "10_D":
-                case "10_H":
-                case "10_S":
-                case "Jack_C":
-                case "Jack_D":
-                case "Jack_H":
-                case "Jack_S":
-                case "Queen_C":
-                case "Queen_D":
-                case "Queen_H":
-                case "Queen_S":
-                case "King_C":
-                case "King_D":
-                case "King_H":
-                case "King_S":
-                    cardVal = 10;
-                    break;
-            }
-            return cardVal;
-        }
+        
     }
 }

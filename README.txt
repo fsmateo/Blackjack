@@ -1,8 +1,5 @@
 # Blackjack
 
-11/27/2018: Project is due three weeks from this day at midnight (12/18), we are currently working on merging together the UI files from Anush and Carlo to create a user experience which provides navigation between main page and game page. 
-Next meeting will be Thursday 11/29 @ 11:30AM at the usual spot. Group Porject Update is also due at midnight on this date
-
 
  Huy and Matt will be working on the Blackjack algorithm
  
