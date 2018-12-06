@@ -8,7 +8,7 @@ namespace Blackjack
 {
     class Player : IComparable<Player>
     {
-        public int handValue {get; set; }
+        public int handValue { get; set; }
         public List<string> playerHand = new List<string>();
 
         private int cardVal = 0;
@@ -117,6 +117,9 @@ namespace Blackjack
                 case "Assets/A_D.png":
                 case "Assets/A_H.png":
                 case "Assets/A_S.png":
+                    if (handValue > 10)
+                        cardVal = 1;
+                    else
                     cardVal = 11;
                     break;
             }
