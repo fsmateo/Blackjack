@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Blackjack
@@ -26,15 +27,16 @@ namespace Blackjack
         Blackjack blackjack = new Blackjack();
         ObservableCollection<String> myHand = new ObservableCollection<string>();
         
-
         public GamePage()
         {
             this.InitializeComponent();
-            myHand.Add(blackjack.player.playerHand[0]);
-            myHand.Add(blackjack.player.playerHand[1]);
-           // System.Diagnostics.Debug.WriteLine(myHand[0]);
+            myHand.Clear();
+            // Add initial cards into the playerHand in UI.
+            myHand.Add(blackjack.playerHand[0]);
+            myHand.Add(blackjack.playerHand[1]);
+            // Bind the UI to myHand
             PlayerHand.ItemsSource = myHand;
-
+            System.Diagnostics.Debug.WriteLine(blackjack.playerHandValue);
 
         }
 
@@ -63,9 +65,9 @@ namespace Blackjack
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Settings_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Settings.IsPaneOpen = !Settings.IsPaneOpen;
+            CoolMenu.IsPaneOpen = !CoolMenu.IsPaneOpen;
         }
 
         /// <summary>
@@ -91,9 +93,37 @@ namespace Blackjack
         }
 
         
-        private void Hit(object sender, RoutedEventArgs e)
+        private async void Hit(object sender, RoutedEventArgs e)
         {
-            blackjack.Hit();
+            try
+            {
+                blackjack.Hit();    // Hit in blackjack class
+            }
+            // TODO: Figure out what exceptions can be raised and handle.
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+
+            myHand.Add(blackjack.playerHand[blackjack.playerHand.Count - 1]);   // Add last card if hit was successful.
+            System.Diagnostics.Debug.WriteLine(myHand[myHand.Count - 1]);
+            // If bust, reinitialize UI hand to the now-reset Blackjack.cs hand.
+            if (blackjack.busted)
+            {
+                HitButton.IsEnabled = false;
+                Logo.Visibility = Visibility.Collapsed;
+                BustMessage.Visibility = Visibility;
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                BustMessage.Visibility = Visibility.Collapsed;
+                Logo.Visibility = Visibility;
+                HitButton.IsEnabled = true;
+                // TODO: DISPLAY BUSTED MESSAGE BEFORE RESETTING HAND.
+                blackjack.NextRound();
+                myHand.Clear();
+                myHand.Add(blackjack.playerHand[0]);
+                myHand.Add(blackjack.playerHand[1]);
+            }
+
         }
 
         private void Stand(object sender, RoutedEventArgs e)
