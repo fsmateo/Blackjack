@@ -32,12 +32,10 @@ namespace Blackjack
             this.InitializeComponent();
             myHand.Clear();
             // Add initial cards into the playerHand in UI.
-            myHand.Add(blackjack.playerHand[0]);
-            myHand.Add(blackjack.playerHand[1]);
+            myHand.Add(blackjack.player.playerHand[0]);
+            myHand.Add(blackjack.player.playerHand[1]);
             // Bind the UI to myHand
             PlayerHand.ItemsSource = myHand;
-            System.Diagnostics.Debug.WriteLine(blackjack.playerHandValue);
-
         }
 
         /// <summary>
@@ -105,7 +103,7 @@ namespace Blackjack
                 System.Diagnostics.Debug.WriteLine(ex.Message);
             }
 
-            myHand.Add(blackjack.playerHand[blackjack.playerHand.Count - 1]);   // Add last card if hit was successful.
+            myHand.Add(blackjack.player.playerHand[blackjack.player.playerHand.Count - 1]);   // Add last card if hit was successful.
             System.Diagnostics.Debug.WriteLine(myHand[myHand.Count - 1]);
             // If bust, reinitialize UI hand to the now-reset Blackjack.cs hand.
             if (blackjack.busted)
@@ -120,8 +118,8 @@ namespace Blackjack
                 // TODO: DISPLAY BUSTED MESSAGE BEFORE RESETTING HAND.
                 blackjack.NextRound();
                 myHand.Clear();
-                myHand.Add(blackjack.playerHand[0]);
-                myHand.Add(blackjack.playerHand[1]);
+                myHand.Add(blackjack.player.playerHand[0]);
+                myHand.Add(blackjack.player.playerHand[1]);
             }
 
         }
